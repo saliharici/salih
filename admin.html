@@ -16,7 +16,7 @@
             <button id="save-all-btn" class="btn-success text-lg px-6 py-2">
                 Kaydet
             </button>
-            <p id="save-status" class="h-6"></p>
+            <button id="logout-btn" class="btn-secondary text-lg px-6 py-2">Çıkış Yap</button>
         </div>
     </header>
 
@@ -25,7 +25,7 @@
         <div id="nav-nobet" class="nav-item" onclick="showTab('nobet')">Nöbetçi/Sınav</div>
         <div id="nav-program" class="nav-item" onclick="showTab('program')">Ders Programı</div>
         <div id="nav-medya" class="nav-item" onclick="showTab('medya')">Duyuru/Medya</div>
-        <div id="nav-ortaksinav" class="nav-item" onclick="showTab('ortaksinav')">Ortak Sınavlar</div> <!-- YENİ SEKME -->
+        <div id="nav-ortaksinav" class="nav-item" onclick="showTab('ortaksinav')">Ortak Sınavlar</div>
     </nav>
 
     <main id="admin-form" class="content-body">
@@ -331,7 +331,6 @@
 
 
     <div id="toast-container"></div>
-    <script type="module" src="js/config.js"></script>
     <script type="module" src="js/admin.js"></script>
 </body>
 </html>
