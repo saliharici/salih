@@ -5,13 +5,13 @@ import { getFirestore } from "https://www.gstatic.com/firebasejs/10.12.2/firebas
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyAFSO4FH_rcXSvUYNn60Yph-EQeWLzWac0",
-  authDomain: "datacek-91963.firebaseapp.com",
-  projectId: "datacek-91963",
-  storageBucket: "datacek-91963.appspot.com",
-  messagingSenderId: "45310934263",
-  appId: "1:45310934263:web:32d11f85ca005ed8f627f2",
-  measurementId: "G-TQM4G2VSH6"
+  apiKey: "AIzaSyDYVKVZqIe-NDYyI_xW8kE-TLut1HcHd3A",
+  authDomain: "okul-7f57a.firebaseapp.com",
+  projectId: "okul-7f57a",
+  storageBucket: "okul-7f57a.appspot.com",
+  messagingSenderId: "647527803588",
+  appId: "1:647527803588:web:ed3e0047cc18369f6bb791",
+  measurementId: "G-7S0V0X29H4"
 };
 
 // Initialize Firebase
