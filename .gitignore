@@ -1,0 +1,6 @@
+# Hassas yapılandırma dosyalarını ve API anahtarlarını yoksay
+js/config.js
+
+# İşletim sistemi tarafından oluşturulan dosyalar
+.DS_Store
+Thumbs.db

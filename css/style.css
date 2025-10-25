@@ -1,0 +1,159 @@
+/* Ana fontu Inter olarak ayarla */
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #263238;
+    color: #ECEFF1;
+    overflow: hidden;
+}
+/* Başlık (Banner) Stili */
+header {
+    background-color: #37474F;
+    padding: 1rem 1.5rem; /* py-4 px-6, Biraz artırıldı */
+    border-bottom: 3px solid #4FC3F7; /* Çizgi kalınlaştırıldı */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.3); /* Gölge güçlendirildi */
+}
+/* Widget'lar için stil */
+.widget {
+    background-color: #37474F;
+    border-radius: 0.5rem;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+/* Widget başlıkları */
+.widget-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #B0BEC5;
+    margin-bottom: 1rem;
+    border-bottom: 1px solid #455A64;
+    padding-bottom: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    flex-shrink: 0;
+}
+/* Başlık (Okul Adı) */
+#school-name {
+    font-size: 2.25rem;
+    font-weight: 800; /* Kalınlaştırıldı */
+    background: linear-gradient(to right, #82B1FF, #4FC3F7);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5); /* Gölge keskinleştirildi */
+    line-height: 1.1; /* Satır aralığı azaltıldı */
+}
+/* Saat */
+#clock {
+    font-size: 2.25rem;
+    font-weight: 700;
+    color: #FFD54F;
+}
+#clock #date {
+    font-size: 1.125rem;
+    color: #90A4AE;
+}
+/* Kayan yazı için stil (Admin panelinden ayarlanıyor) */
+marquee { display: block; }
+/* Logo için stil */
+#school-logo {
+    height: 3.5rem;
+    width: auto;
+    margin-right: 1rem;
+    object-fit: contain;
+    /* Hafif yuvarlak köşe ve gölge eklendi */
+    border-radius: 0.25rem;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.4);
+}
+/* Hava Durumu */
+#weather-widget { padding: 1rem; }
+#weather-icon { font-size: 3.75rem; }
+#weather-temp { font-size: 3rem; }
+#weather-desc { font-size: 1.125rem; }
+#forecast-1, #forecast-2, #forecast-3 { flex: 1; text-align: center;}
+#forecast-1 div, #forecast-2 div, #forecast-3 div { font-size: 0.875rem; }
+#forecast-1 .text-3xl, #forecast-2 .text-3xl, #forecast-3 .text-3xl { font-size: 1.875rem; }
+#weather-advice { font-size: 0.875rem; margin-top: 0.75rem; padding-top: 0.75rem; }
+
+/* İçerik listeleri (Duyuru, Nöbet, Ortak Sınav) */
+#announcements-list li, #duty-list li, #common-exam-list li {
+     font-size: 1rem;
+     padding-bottom: 0.25rem;
+     margin-bottom: 0.25rem;
+}
+ #announcement-summary { font-size: 0.875rem; }
+ /* Ortak Sınav stili */
+ #common-exam-list {
+     display: grid;
+     grid-template-columns: 1fr 2fr 1.5fr;
+     gap: 0.5rem 1rem;
+     font-size: 0.9rem;
+     overflow-y: auto;
+     max-height: calc(100% - 4rem);
+ }
+ .exam-item {
+     display: contents;
+     padding: 0.2rem 0;
+     border-bottom: 1px solid #455A64;
+ }
+ .exam-item:last-child { border-bottom: none; }
+
+ .exam-date { font-weight: 600; color: #FFD54F; }
+ .exam-details { color: #ECEFF1; font-weight: 500;}
+ .exam-time { color: #82B1FF; font-weight: 600; text-align: right;}
+
+
+/* Sınav Başarısı / Günün Bilgisi / Günün Kelimesi Animasyonu */
+.fade-out { animation: fadeOut 0.5s forwards; }
+.fade-in { animation: fadeIn 0.5s forwards; }
+@keyframes fadeOut { from { opacity: 1; } to { opacity: 0; } }
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+#exam-grades { font-size: 0.875rem; }
+#fact-text, #word-text { font-size: 1.25rem; }
+
+
+/* Ders Programı - Anlık */
+.schedule-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 0.75rem;
+    font-size: 1rem;
+    overflow-y: auto;
+    max-height: calc(100% - 6rem);
+}
+.schedule-item span:first-child { font-weight: 600; color: #82B1FF; }
+#schedule-topic { font-size: 0.875rem; }
+
+/* TTS Buton Stilleri */
+.tts-button { font-size: 1.5rem; margin-left: 0.75rem; background: none; border: none; cursor: pointer; opacity: 0.7; transition: opacity 0.2s; }
+.tts-button:hover { opacity: 1; }
+.tts-button.loading::after { content: "⏳"; display: inline-block; animation: spin 1s linear infinite; }
+.tts-button.playing::after { content: "🔊"; }
+@keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+
+
+/* Sayfa Geçiş Stilleri */
+main { position: relative; }
+.page-container {
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+    padding: 1.5rem;
+    display: grid;
+    gap: 1.5rem;
+    transition: opacity 0.7s ease-in-out; opacity: 1;
+}
+.page-container.hidden-page { opacity: 0; pointer-events: none; }
+
+/* Sayfa Grid Ayarları */
+#page1 { grid-template-columns: repeat(4, 1fr); grid-template-rows: repeat(2, 1fr); }
+#page2 { grid-template-columns: repeat(4, 1fr); grid-template-rows: 1fr; }
+#page3 { grid-template-columns: repeat(4, 1fr); grid-template-rows: 1fr; }
+
+
+/* Günün Kelimesi Stili */
+#word-text strong { color: #FFD54F; font-weight: 600; }
+
+/* Sayfa Navigasyon Butonları Stilleri */
+.page-nav { text-align: center; padding-bottom: 0.5rem; }
+.page-nav-button { display: inline-block; width: 1rem; height: 1rem; background-color: #546E7A; border-radius: 9999px; margin: 0 0.25rem; cursor: pointer; transition: background-color 0.3s; }
+.page-nav-button:hover { background-color: #78909C; }
+.page-nav-button.active { background-color: #ECEFF1; }

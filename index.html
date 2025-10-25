@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Okul Dijital Duyuru Panosu</title>
+
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="h-screen flex flex-col">
+
+
+    <header class="flex justify-between items-center flex-shrink-0">
+        <div class="flex items-center">
+            <img id="school-logo" src="" alt="Okul Logosu" style="display: none;">
+            <h1 id="school-name">Okul Adı Yükleniyor...</h1>
+        </div>
+        <div id="clock" class="text-right">
+            <div id="time">00:00</div>
+            <div id="date">01 Ocak 2025</div>
+        </div>
+    </header>
+
+
+    <main class="flex-1 overflow-hidden relative">
+
+        <!-- Sayfa 1: Genel Bilgiler & Ortak Sınav -->
+        <div id="page1" class="page-container">
+            <!-- Geri Sayım -->
+            <div id="countdown-widget" class="widget col-span-1 row-span-1 flex flex-col items-center justify-center text-center">
+                <h2 id="countdown-title" class="widget-title w-full">...</h2>
+                <div class="flex-1 flex items-center justify-center gap-4 text-yellow-300">
+                    <div class="text-6xl md:text-8xl font-extrabold" id="countdown-days">00</div>
+                    <div class="text-2xl md:text-4xl">Gün</div>
+                </div>
+                <div id="countdown-motto" class="text-amber-200 mt-2 pt-2 border-t border-slate-600 w-full text-center leading-normal text-base">
+                    ✨ Yükleniyor...
+                </div>
+            </div>
+            <!-- Hava Durumu -->
+            <div id="weather-widget" class="widget col-span-3 row-span-1">
+                 <div class="flex justify-between items-center mb-2">
+                     <div class="flex gap-4 items-center">
+                         <div id="weather-icon">...</div>
+                         <div>
+                             <div id="weather-temp">-°C</div>
+                             <div id="weather-desc">Yükleniyor...</div>
+                         </div>
+                     </div>
+                     <div class="flex gap-6 text-center text-sm">
+                         <div id="forecast-1">...</div>
+                         <div id="forecast-2">...</div>
+                         <div id="forecast-3">...</div>
+                     </div>
+                 </div>
+                <div id="weather-advice" class="text-amber-200 border-t border-slate-600 w-full text-center leading-normal text-base pt-3 mt-3">
+                    ✨ Yükleniyor...
+                </div>
+            </div>
+             <!-- YENİ: Ortak Sınav Takvimi -->
+            <div id="common-exam-widget" class="widget col-span-4 row-span-1 flex flex-col" style="display: none;">
+                <h2 id="common-exam-title" class="widget-title">Ortak Sınav Takvimi</h2>
+                <ul id="common-exam-list" class="flex-1 space-y-1 overflow-y-auto">
+                    <li>Takvim yükleniyor...</li>
+                </ul>
+            </div>
+             <!-- Duyurular (Ortak Sınav gösterilmiyorsa burası görünür) -->
+            <div id="announcements-widget" class="widget col-span-4 row-span-1 flex flex-col">
+                <h2 class="widget-title">📢 Duyurular</h2>
+                <div id="announcement-summary" class="text-amber-200 mb-2 pb-2 border-b border-slate-600" style="display: none;">
+                     ✨ Yükleniyor...
+                </div>
+                <ul id="announcements-list" class="flex-1 space-y-2 overflow-y-auto">
+                    <li>Duyurular yükleniyor...</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Sayfa 2: Akademi & Nöbet -->
+        <div id="page2" class="page-container hidden-page">
+            <!-- Ders Programı -->
+            <div id="schedule-widget" class="widget col-span-3 row-span-1 flex flex-col">
+                <h2 id="schedule-title" class="widget-title">📚 Ders Programı (Yükleniyor...)</h2>
+                <div id="schedule-list" class="schedule-grid flex-1">
+                    <p class="text-slate-400 col-span-full text-center">Program yükleniyor...</p>
+                </div>
+                <div id="schedule-topic" class="text-amber-200 mt-3 pt-3 border-t border-slate-600 w-full text-center leading-normal">
+                    ✨ Yükleniyor...
+                </div>
+            </div>
+             <!-- Nöbetçiler -->
+            <div id="duty-widget" class="widget col-span-1 row-span-1">
+                <h2 class="widget-title">🧑‍🏫 Nöbetçi Öğretmenler</h2>
+                <ul id="duty-list" class="flex-1 space-y-2 overflow-y-auto">
+                    <li>Nöbetçi listesi yükleniyor...</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Sayfa 3: Medya & Başarı -->
+        <div id="page3" class="page-container hidden-page">
+             <!-- Slayt Gösterisi -->
+            <div id="slideshow-widget" class="widget col-span-3 row-span-1 relative bg-black p-0">
+                 <img id="slideshow-image" src="https://placehold.co/1000x800/37474F/ECEFF1?text=Slayt+Yükleniyor..." alt="Slayt Gösterisi" class="absolute top-0 left-0 w-full h-full object-contain"/>
+                 <div id="slideshow-dots" class="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex gap-2 z-10"></div>
+            </div>
+            <!-- Sınav/Bilgi/Kelime -->
+            <div id="exam-fact-word-widget" class="widget col-span-1 row-span-1 relative">
+                 <!-- Sınav İçeriği -->
+                <div id="exam-content" class="absolute inset-0 p-6 flex flex-col opacity-100">
+                    <h2 id="exam-title" class="widget-title">Sınav Başarısı Yükleniyor...</h2>
+                    <div id="exam-grades" class="flex-1 grid grid-cols-1 gap-y-2 overflow-y-auto"></div>
+                </div>
+                 <!-- Günün Bilgisi İçeriği -->
+                <div id="fact-content" class="absolute inset-0 p-6 flex flex-col opacity-0">
+                    <h2 class="widget-title">✨ Günün Bilgisi</h2>
+                    <div id="fact-text" class="flex-1 flex items-center justify-center text-center leading-snug">
+                        Yükleniyor...
+                    </div>
+                </div>
+                 <!-- Günün Kelimesi İçeriği -->
+                <div id="word-content" class="absolute inset-0 p-6 flex flex-col opacity-0">
+                    <h2 class="widget-title">✨ Günün Kelimesi</h2>
+                    <div id="word-text" class="flex-1 flex flex-col items-center justify-center text-center leading-snug">
+                        Yükleniyor...
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+
+    <footer class="bg-transparent px-6 py-2 flex-shrink-0">
+        <!-- Sayfa Navigasyon Butonları -->
+        <div id="page-navigation" class="page-nav">
+            <span id="nav-btn-1" class="page-nav-button active" onclick="manualGoToPage(1)"></span>
+            <span id="nav-btn-2" class="page-nav-button" onclick="manualGoToPage(2)"></span>
+            <span id="nav-btn-3" class="page-nav-button" onclick="manualGoToPage(3)"></span>
+        </div>
+        <marquee id="scrolling-text">Duyuru panosu yükleniyor... Veriler Firebase üzerinden çekilecek...</marquee>
+    </footer>
+
+
+    <script type="module" src="js/config.js"></script>
+    <script type="module" src="js/app.js"></script>
+</body>
+</html>
