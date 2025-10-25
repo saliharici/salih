@@ -3,7 +3,7 @@
 
 // Firebase projenizin "Proje Ayarları" -> "Genel" bölümünden aldığınız yapılandırma nesnesi.
 export const firebaseConfig = {
-  apiKey: "AIzaSyCmlyxVZPuCJRhdxGNn2ie20VhM4bqUxNo",
+  apiKey: "AIzaSyB-L1p_V8pPq2C3f_lZJ9X2P3s_7lQjG5E",
   authDomain: "okulpro-e9562.firebaseapp.com",
   projectId: "okulpro-e9562",
   storageBucket: "okulpro-e9562.firebasestorage.app",
