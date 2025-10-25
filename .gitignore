@@ -1,5 +1,4 @@
 # Hassas yapılandırma dosyalarını ve bağımlılıkları yoksay
-js/config.js
 node_modules/
 
 # İşletim sistemi dosyaları
