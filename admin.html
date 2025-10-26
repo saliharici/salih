@@ -20,12 +20,12 @@
         </div>
     </header>
 
-    <nav class="admin-nav bg-white shadow-md px-8 py-2">
+    <nav class="admin-nav">
         <div id="nav-genel" class="nav-item active" onclick="showTab('genel')">Genel Ayarlar</div>
-        <div id="nav-nobet" class="nav-item" onclick="showTab('nobet')">Nöbetçi/Sınav</div>
-        <div id="nav-program" class="nav-item" onclick="showTab('program')">Ders Programı</div>
         <div id="nav-medya" class="nav-item" onclick="showTab('medya')">Duyuru/Medya</div>
         <div id="nav-ortaksinav" class="nav-item" onclick="showTab('ortaksinav')">Ortak Sınavlar</div>
+        <div id="nav-program" class="nav-item" onclick="showTab('program')">Ders Programı</div>
+        <div id="nav-nobet" class="nav-item" onclick="showTab('nobet')">Nöbetçi/Sınav</div>
     </nav>
 
     <main id="admin-form" class="content-body">
@@ -86,8 +86,12 @@
         <!-- Bölüm 2: Nöbetçi / Sınav -->
         <section id="nobet" class="form-section">
             <div class="flex justify-between items-center mb-4">
-                 <h2 class="text-2xl font-semibold text-gray-700">Nöbetçi ve Sınav Ayarları</h2>
-                 <button id="load-defaults-btn" class="btn-secondary">Varsayılan PDF Verilerini Yükle</button>
+                <h2 class="text-2xl font-semibold text-gray-700">Nöbetçi ve Sınav Ayarları</h2>
+                <div>
+                    <a href="/resources/sablon_nobet_sinav.xlsx" download class="btn-secondary text-sm">Şablonu İndir</a>
+                    <label for="excelUploadNobet" class="btn-primary text-sm cursor-pointer ml-2">Excel'den Yükle</label>
+                    <input type="file" id="excelUploadNobet" accept=".xlsx, .xls" class="hidden">
+                </div>
             </div>
             <div class="form-grid">
                 <!-- Nöbetçi Listesi -->
@@ -153,8 +157,15 @@
 
         <!-- Bölüm 3: Ders Programı -->
         <section id="program" class="form-section">
-            <h2 class="text-2xl font-semibold mb-4 text-gray-700">Haftalık Ders Programı (PDF'ten alındı)</h2>
-            <p class="mb-4 text-gray-600">Her sınıf için 8 dersi virgülle ayırarak (,) giriniz.</p>
+             <div class="flex justify-between items-center mb-4">
+                <h2 class="text-2xl font-semibold text-gray-700">Haftalık Ders Programı</h2>
+                <div>
+                    <a href="/resources/sablon_ders_programi.xlsx" download class="btn-secondary text-sm">Şablonu İndir</a>
+                    <label for="excelUploadProgram" class="btn-primary text-sm cursor-pointer ml-2">Excel'den Yükle</label>
+                    <input type="file" id="excelUploadProgram" accept=".xlsx, .xls" class="hidden">
+                </div>
+            </div>
+            <p class="mb-4 text-gray-600">Her sınıf için 8 dersi virgülle ayırarak (,) giriniz veya Excel'den yükleyiniz.</p>
 
             <!-- Pazartesi -->
             <div class="schedule-grid-day mb-4">
@@ -291,23 +302,46 @@
                 </div>
 
                 <!-- Slayt Gösterisi -->
-                <div class="md:col-span-1 space-y-4">
-                    <label for="slideshowImages">Slayt Gösterisi Resimleri (Her satıra bir URL)</label>
-                    <textarea id="slideshowImages" rows="8" placeholder="https://.../resim1.jpg&#10;https://.../resim2.png"></textarea>
+                <div class="md:col-span-1 space-y-4 p-4 bg-gray-50 rounded-lg">
+                    <label class="font-semibold text-lg">Slayt Gösterisi Yönetimi</label>
 
-                    <label for="gemini-image-prompt">✨ AI ile Resim Oluştur (Imagen)</label>
-                    <div class="gemini-input-group">
-                        <input type="text" id="gemini-image-prompt" placeholder="Konu (örn: okul bahçesi, bilim deneyi)">
-                        <button id="gemini-image-btn" class="btn-gemini px-4 py-3">✨ Oluştur</button>
+                    <!-- Resim Yükleme Alanı -->
+                    <div>
+                        <label for="imageUpload">Yeni Resim Yükle</label>
+                        <input type="file" id="imageUpload" accept="image/jpeg, image/png, image/webp" class="block w-full text-sm text-slate-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100"/>
+                        <progress id="uploadProgress" value="0" max="100" class="w-full mt-2 [&::-webkit-progress-bar]:rounded-lg [&::-webkit-progress-value]:rounded-lg   [&::-webkit-progress-bar]:bg-slate-300 [&::-webkit-progress-value]:bg-blue-600 [&::-moz-progress-bar]:bg-blue-600" style="display: none;"></progress>
                     </div>
-                    <div id="gemini-image-status" class="text-sm text-gray-500 h-6"></div>
+
+                    <!-- Yüklenen Resimler Listesi -->
+                    <div>
+                        <label>Mevcut Resimler (Kaydetmek için listeyi düzenleyin)</label>
+                        <textarea id="slideshowImages" rows="6" placeholder="Yüklenen resimlerin URL'leri burada görünecek..."></textarea>
+                        <p class="text-xs text-gray-500 mt-1">Her satırda bir resim URL'si olmalıdır. Sırayı değiştirebilir veya satırları silebilirsiniz.</p>
+                    </div>
+
+                    <!-- AI ile Resim Oluşturma (Korundu) -->
+                    <div>
+                        <label for="gemini-image-prompt" class="text-sm">✨ Veya AI ile Resim Oluştur (Imagen)</label>
+                        <div class="gemini-input-group">
+                            <input type="text" id="gemini-image-prompt" placeholder="Konu (örn: bilim deneyi)">
+                            <button id="gemini-image-btn" class="btn-gemini px-3 py-2 text-sm">✨</button>
+                        </div>
+                        <div id="gemini-image-status" class="text-sm text-gray-500 h-6"></div>
+                    </div>
                 </div>
             </div>
         </section>
 
         <!-- YENİ BÖLÜM 5: Ortak Sınavlar -->
         <section id="ortaksinav" class="form-section">
-            <h2 class="text-2xl font-semibold mb-4 text-gray-700">Ortak Sınav Takvimi</h2>
+             <div class="flex justify-between items-center mb-4">
+                <h2 class="text-2xl font-semibold text-gray-700">Ortak Sınav Takvimi</h2>
+                <div>
+                    <a href="/resources/sablon_ortak_sinav.xlsx" download class="btn-secondary text-sm">Şablonu İndir</a>
+                    <label for="excelUploadOrtakSinav" class="btn-primary text-sm cursor-pointer ml-2">Excel'den Yükle</label>
+                    <input type="file" id="excelUploadOrtakSinav" accept=".xlsx, .xls" class="hidden">
+                </div>
+            </div>
             <div class="form-grid">
                  <div>
                     <label for="showCommonExams">Ortak Sınav Takvimini Göster</label>
@@ -331,6 +365,8 @@
 
 
     <div id="toast-container"></div>
+    <!-- Excel okumak için SheetJS kütüphanesi -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
     <script type="module" src="js/admin.js"></script>
 </body>
 </html>
