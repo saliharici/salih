@@ -1,0 +1,27 @@
+// Bu dosyayı kopyalayıp adını "firebase-config.js" olarak değiştirin.
+// Ardından, Firebase projenizin konsolundan aldığınız kendi yapılandırma
+// bilgilerinizi aşağıdaki alanlara yapıştırın.
+// ÖNEMLİ: firebase-config.js dosyası .gitignore'a eklendiği için
+// GitHub'a gönderilmeyecektir. Bu anahtarlar sadece sizin yerel
+// kopyanızda kalacaktır.
+
+// Your web app's Firebase configuration
+const firebaseConfig = {
+  apiKey: "YOUR_API_KEY",
+  authDomain: "YOUR_AUTH_DOMAIN",
+  projectId: "YOUR_PROJECT_ID",
+  storageBucket: "YOUR_STORAGE_BUCKET",
+  messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
+  appId: "YOUR_APP_ID"
+};
+
+// Initialize Firebase
+import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-app.js";
+import { getAuth } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-auth.js";
+import { getFirestore } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore.js";
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+const auth = getAuth(app);
+
+export { db, auth };

@@ -1,7 +1,8 @@
-# Hassas yapılandırma dosyalarını ve bağımlılıkları yoksay
-js/config.js
+# Firebase configuration file
+firebase-config.js
+
+# Node modules
 node_modules/
 
-# İşletim sistemi dosyaları
-.DS_Store
-Thumbs.db
+# Jules's scratch directory
+jules-scratch/
