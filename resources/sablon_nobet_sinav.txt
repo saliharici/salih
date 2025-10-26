@@ -1,0 +1,13 @@
+Lütfen boş bir Excel dosyası açın.
+
+İlk sayfanın adını "Nobet" olarak değiştirin.
+Bu sayfada, A1 hücresine "Pazartesi", B1 hücresine "Salı", C1 hücresine "Çarşamba", D1 hücresine "Perşembe", E1 hücresine "Cuma" yazın.
+Her günün altına, nöbet yerini ve öğretmen adını virgülle ayırarak yazın. Örnek:
+KANTİN,A.LAFZİ
+BAHÇE,S.DURGUN
+
+İkinci bir sayfa oluşturun ve adını "Sinav" olarak değiştirin.
+Bu sayfada, A1 hücresine "9. Sınıflar", B1 hücresine "10. Sınıflar", C1 hücresine "11. Sınıflar", D1 hücresine "12. Sınıflar" yazın.
+Her sınıfın altına, öğrenci adını ve puanını virgülle ayırarak yazın. Örnek:
+Ali Yılmaz,450
+Ayşe Kara,420

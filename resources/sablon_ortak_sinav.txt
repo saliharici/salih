@@ -1,0 +1,9 @@
+Lütfen boş bir Excel dosyası açın.
+
+Sayfanın adını "OrtakSinav" olarak değiştirin.
+Bu sayfada, A1 hücresine "Tarih,Sınıf,Ders" yazın.
+
+Bu sütunun altına, her satıra bir sınav bilgisi gelecek şekilde, bilgileri virgülle ayırarak yazın. Örnek:
+25.10.2025,9. Sınıflar,Matematik
+26.10.2025,10. Sınıflar,Fizik
+27.10.2025,11. Sınıflar,Edebiyat

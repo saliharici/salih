@@ -1,8 +1,7 @@
 // Firebase servislerini ve yardımcı fonksiyonları içe aktar
-import { auth, db, storage } from './firebase-config.js';
+import { auth, db } from './firebase-config.js';
 import { onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 import { doc, getDoc, setDoc } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
-import { ref, uploadBytesResumable, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-storage.js";
 
 // --- GLOBAL DEĞİŞKENLER VE ELEMENTLER ---
 const DATA_COLLECTION = 'settings';
@@ -210,55 +209,6 @@ function showToast(message, type = 'info') {
     }, 5000);
 }
 
-// --- RESİM YÜKLEME ---
-const imageUploadInput = document.getElementById('imageUpload');
-const uploadProgress = document.getElementById('uploadProgress');
-const slideshowImagesTextarea = document.getElementById('slideshowImages');
-
-imageUploadInput.addEventListener('change', (e) => {
-    const file = e.target.files[0];
-    if (file) {
-        uploadImage(file);
-    }
-});
-
-function uploadImage(file) {
-    // Benzersiz bir dosya adı oluştur (örn: slayt-1678886400000.jpg)
-    const fileName = `slayt-${Date.now()}.${file.name.split('.').pop()}`;
-    const storageRef = ref(storage, `slideshow/${fileName}`);
-    const uploadTask = uploadBytesResumable(storageRef, file);
-
-    uploadProgress.style.display = 'block';
-
-    uploadTask.on('state_changed',
-        (snapshot) => {
-            const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-            uploadProgress.value = progress;
-            console.log('Upload is ' + progress + '% done');
-        },
-        (error) => {
-            console.error("Yükleme hatası:", error);
-            showToast('Resim yüklenirken bir hata oluştu!', 'error');
-            uploadProgress.style.display = 'none';
-        },
-        () => {
-            // Yükleme tamamlandığında dosyanın URL'ini al
-            getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-                console.log('Dosya yüklendi, URL:', downloadURL);
-
-                // URL'i textarea'ya ekle
-                const existingURLs = slideshowImagesTextarea.value.trim();
-                slideshowImagesTextarea.value = existingURLs
-                    ? `${existingURLs}\n${downloadURL}`
-                    : downloadURL;
-
-                showToast('Resim başarıyla yüklendi!', 'success');
-                uploadProgress.style.display = 'none';
-                imageUploadInput.value = ''; // Input'u temizle
-            });
-        }
-    );
-}
 
 
 // --- EXCEL YÜKLEME ---

@@ -1,0 +1,12 @@
+Lütfen boş bir Excel dosyası açın.
+
+Sayfanın adını "Program" olarak değiştirin.
+Bu sayfada, A1 hücresine "Sınıf", B1 hücresine "Pazartesi", C1 hücresine "Salı", D1 hücresine "Çarşamba", E1 hücresine "Perşembe", F1 hücresine "Cuma" yazın.
+
+"Sınıf" sütununun altına, ders programını girmek istediğiniz sınıfların adlarını yazın. Örnek:
+9-A
+9-B
+10-A (SAY)
+
+Her günün sütununa, o sınıfa ait 8 dersi aralarında virgül olacak şekilde yazın. Örnek:
+MAT,FİZ,KİM,BİY,EDEB,TAR,COĞ,BED
