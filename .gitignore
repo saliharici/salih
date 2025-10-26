@@ -5,3 +5,9 @@ node_modules/
 # İşletim sistemi dosyaları
 .DS_Store
 Thumbs.db
+
+# Log dosyaları
+*.log
+
+# Geçici doğrulama dosyaları
+jules-scratch/
