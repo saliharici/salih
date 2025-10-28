@@ -7,6 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
         { id: '#exam', name: 'exam', type: 'exam' },
         { id: '#common-exam', name: 'commonExam', type: 'commonExam' },
         { id: '#schedule', name: 'schedule', type: 'schedule' },
+        { id: '#teacher-schedule', name: 'teacherSchedule', type: 'teacherSchedule' },
         { id: '#image', name: 'image', type: 'image' },
         { id: '#video', name: 'video', type: 'video' },
     ];
@@ -78,6 +79,64 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
+    const updateTeacherSchedule = (data) => {
+        if (!data || data.length === 0) {
+            document.getElementById('teacher-schedule-widget').style.display = 'none';
+            return;
+        }
+
+        document.getElementById('teacher-schedule-widget').style.display = 'flex';
+        const teacherSelect = document.getElementById('teacher-select');
+        const scheduleList = document.getElementById('teacher-schedule-list');
+        const currentTeacher = teacherSelect.value; // Mevcut seçimi koru
+        teacherSelect.innerHTML = '<option value="">Öğretmen Seçiniz</option>';
+
+        data.forEach(teacher => {
+            const option = document.createElement('option');
+            option.value = teacher.name;
+            option.textContent = teacher.name;
+            if (teacher.name === currentTeacher) {
+                option.selected = true;
+            }
+            teacherSelect.appendChild(option);
+        });
+
+        teacherSelect.onchange = () => {
+            const selectedTeacherName = teacherSelect.value;
+            const selectedTeacher = data.find(t => t.name === selectedTeacherName);
+            scheduleList.innerHTML = '';
+
+            if (selectedTeacher) {
+                const schedule = selectedTeacher.schedule;
+                const days = ['Pazartesi', 'Salı', 'Çarşamba', 'Perşembe', 'Cuma'];
+                const lessons = ['1. Ders', '2. Ders', '3. Ders', '4. Ders', '5. Ders', '6. Ders', '7. Ders', '8. Ders'];
+
+                let html = '<div class="schedule-grid-teacher">';
+                html += '<div></div>'; // Köşe boşluğu
+                lessons.forEach(lesson => html += `<div>${lesson}</div>`);
+
+                days.forEach(day => {
+                    html += `<div>${day}</div>`;
+                    const dayKey = day.toLocaleLowerCase('en-US').replace('ş', 's').replace('ç', 'c').replace('ğ', 'g');
+                    const daySchedule = schedule[dayKey] ? schedule[dayKey].split(',').map(s => s.trim()) : [];
+                    for (let i = 0; i < 8; i++) {
+                        html += `<div>${daySchedule[i] || '-'}</div>`;
+                    }
+                });
+
+                html += '</div>';
+                scheduleList.innerHTML = html;
+            } else {
+                scheduleList.innerHTML = '<p class="text-slate-400 col-span-full text-center">Öğretmen seçiniz...</p>';
+            }
+        };
+
+        // Eğer bir öğretmen daha önce seçilmişse, değişikliği tetikle
+        if (currentTeacher) {
+            teacherSelect.onchange();
+        }
+    };
+
     const updateImage = (data) => {
         if (!data || !data.url) return;
         const imgElement = document.getElementById('display-image');
@@ -144,6 +203,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if(config.exam) updateExam(config.exam);
             if(config.commonExam) updateCommonExam(config.commonExam);
             if(config.schedule) updateSchedule(config.schedule);
+            if(config.teacherSchedule) updateTeacherSchedule(config.teacherSchedule);
             if(config.image) updateImage(config.image);
             if(config.video) updateVideo(config.video);
 

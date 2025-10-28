@@ -79,6 +79,25 @@ function buildDataObject() {
     data.commonExam.title = document.getElementById('commonExamTitle')?.value;
     data.commonExam.dates = document.getElementById('commonExamDates')?.value;
 
+    // Öğretmen Ders Programı
+    data.teacherSchedule = [];
+    const teacherScheduleContainer = document.getElementById('teacher-schedule-container');
+    teacherScheduleContainer.querySelectorAll('.teacher-schedule-entry').forEach(entry => {
+        const teacherData = {
+            name: entry.querySelector('input[data-type="name"]').value,
+            schedule: {
+                pazartesi: entry.querySelector('input[data-day="pazartesi"]').value,
+                sali: entry.querySelector('input[data-day="sali"]').value,
+                carsamba: entry.querySelector('input[data-day="carsamba"]').value,
+                persembe: entry.querySelector('input[data-day="persembe"]').value,
+                cuma: entry.querySelector('input[data-day="cuma"]').value,
+            }
+        };
+        if (teacherData.name) { // Sadece ismi olan öğretmenleri kaydet
+            data.teacherSchedule.push(teacherData);
+        }
+    });
+
     return data;
 }
 
@@ -134,6 +153,14 @@ function populateForm(data) {
         document.getElementById('showCommonExams').checked = data.commonExam.show || false;
         document.getElementById('commonExamTitle').value = data.commonExam.title || '';
         document.getElementById('commonExamDates').value = data.commonExam.dates || '';
+    }
+     // Öğretmen Ders Programı
+    if (data.teacherSchedule) {
+        const container = document.getElementById('teacher-schedule-container');
+        container.innerHTML = ''; // Konteyneri temizle
+        data.teacherSchedule.forEach(teacher => {
+            addTeacherScheduleEntry(teacher);
+        });
     }
 }
 
@@ -207,6 +234,37 @@ function showToast(message, type = 'info') {
         toast.classList.remove('show');
         toast.addEventListener('transitionend', () => toast.remove());
     }, 5000);
+}
+
+// --- ÖĞRETMEN PROGRAMI DINAMIK FORM ---
+document.getElementById('add-teacher-btn').addEventListener('click', () => {
+    addTeacherScheduleEntry(); // Boş yeni bir giriş ekle
+});
+
+function addTeacherScheduleEntry(teacher = null) {
+    const container = document.getElementById('teacher-schedule-container');
+    const entryId = `teacher-${Date.now()}`;
+    const entryDiv = document.createElement('div');
+    entryDiv.className = 'teacher-schedule-entry';
+    entryDiv.id = entryId;
+
+    const teacherName = teacher ? teacher.name : '';
+    const schedule = teacher ? teacher.schedule : {};
+
+    entryDiv.innerHTML = `
+        <div class="teacher-schedule-header">
+            <input type="text" placeholder="Öğretmen Adı Soyadı" value="${teacherName}" data-type="name" class="teacher-name-input">
+            <button class="btn-danger-small" onclick="document.getElementById('${entryId}').remove()">Kaldır</button>
+        </div>
+        <div class="teacher-schedule-grid">
+            <input type="text" placeholder="Pazartesi Dersleri" value="${schedule.pazartesi || ''}" data-day="pazartesi">
+            <input type="text" placeholder="Salı Dersleri" value="${schedule.sali || ''}" data-day="sali">
+            <input type="text" placeholder="Çarşamba Dersleri" value="${schedule.carsamba || ''}" data-day="carsamba">
+            <input type="text" placeholder="Perşembe Dersleri" value="${schedule.persembe || ''}" data-day="persembe">
+            <input type="text" placeholder="Cuma Dersleri" value="${schedule.cuma || ''}" data-day="cuma">
+        </div>
+    `;
+    container.appendChild(entryDiv);
 }
 
 

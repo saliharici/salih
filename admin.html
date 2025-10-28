@@ -25,6 +25,7 @@
         <div id="nav-medya" class="nav-item" onclick="showTab('medya')">Duyuru/Medya</div>
         <div id="nav-ortaksinav" class="nav-item" onclick="showTab('ortaksinav')">Ortak Sınavlar</div>
         <div id="nav-program" class="nav-item" onclick="showTab('program')">Ders Programı</div>
+        <div id="nav-teacher-schedule" class="nav-item" onclick="showTab('teacher-schedule')">Öğretmen Programı</div>
         <div id="nav-nobet" class="nav-item" onclick="showTab('nobet')">Nöbetçi/Sınav</div>
     </nav>
 
@@ -283,6 +284,18 @@
                 </div>
             </div>
 
+        </section>
+
+        <!-- Bölüm 3.5: Öğretmen Ders Programı -->
+        <section id="teacher-schedule" class="form-section">
+            <div class="flex justify-between items-center mb-4">
+                <h2 class="text-2xl font-semibold text-gray-700">Öğretmen Ders Programı</h2>
+                <button id="add-teacher-btn" class="btn-primary text-sm">Yeni Öğretmen Ekle</button>
+            </div>
+            <p class="mb-4 text-gray-600">Her öğretmen için 8 dersi virgülle ayırarak (,) giriniz.</p>
+            <div id="teacher-schedule-container" class="space-y-6">
+                <!-- Öğretmen programları buraya dinamik olarak eklenecek -->
+            </div>
         </section>
 
         <!-- Bölüm 4: Duyuru ve Medya -->
