@@ -26,6 +26,7 @@
         <div id="nav-ortaksinav" class="nav-item" onclick="showTab('ortaksinav')">Ortak Sınavlar</div>
         <div id="nav-program" class="nav-item" onclick="showTab('program')">Ders Programı</div>
         <div id="nav-nobet" class="nav-item" onclick="showTab('nobet')">Nöbetçi/Sınav</div>
+        <div id="nav-analiz" class="nav-item" onclick="showTab('analiz')">Analiz</div>
     </nav>
 
     <main id="admin-form" class="content-body">
@@ -344,7 +345,96 @@
             </div>
         </section>
 
+        <!-- Bölüm 6: Analiz -->
+        <section id="analiz" class="form-section">
+            <h2 class="text-2xl font-semibold mb-4 text-gray-700">Analiz Sayfası İçeriği</h2>
+            <div class="space-y-6">
 
+                <div>
+                    <label for="analiz-ogrenme-etkililigi-title" class="font-semibold">Öğrenme Etkililiği Başlık</label>
+                    <input type="text" id="analiz-ogrenme-etkililigi-title">
+                    <label for="analiz-ogrenme-etkililigi-text" class="mt-2">Metin</label>
+                    <textarea id="analiz-ogrenme-etkililigi-text" rows="5"></textarea>
+                </div>
+
+                <div>
+                    <label for="analiz-kullanici-memnuniyeti-title" class="font-semibold">Kullanıcı Memnuniyeti Başlık</label>
+                    <input type="text" id="analiz-kullanici-memnuniyeti-title">
+                    <label for="analiz-kullanici-memnuniyeti-text" class="mt-2">Metin</label>
+                    <textarea id="analiz-kullanici-memnuniyeti-text" rows="5"></textarea>
+                </div>
+
+                <div>
+                    <label for="analiz-zaman-ve-sure-yonetimi-title" class="font-semibold">Zaman ve Süre Yönetimi Başlık</label>
+                    <input type="text" id="analiz-zaman-ve-sure-yonetimi-title">
+                    <label for="analiz-zaman-ve-sure-yonetimi-text" class="mt-2">Metin</label>
+                    <textarea id="analiz-zaman-ve-sure-yonetimi-text" rows="5"></textarea>
+                </div>
+
+                <div>
+                    <label for="analiz-teknoloji-kullanilabilirligi-title" class="font-semibold">Teknoloji Kullanılabilirliği Başlık</label>
+                    <input type="text" id="analiz-teknoloji-kullanilabilirligi-title">
+                    <label for="analiz-teknoloji-kullanilabilirligi-text" class="mt-2">Metin</label>
+                    <textarea id="analiz-teknoloji-kullanilabilirligi-text" rows="5"></textarea>
+                </div>
+
+                <div>
+                    <label for="analiz-icerik-kalitesi-title" class="font-semibold">İçerik Kalitesi Başlık</label>
+                    <input type="text" id="analiz-icerik-kalitesi-title">
+                    <label for="analiz-icerik-kalitesi-text" class="mt-2">Metin</label>
+                    <textarea id="analiz-icerik-kalitesi-text" rows="5"></textarea>
+                </div>
+
+                <div>
+                    <label for="analiz-egitmen-destegi-title" class="font-semibold">Eğitmen Desteği Başlık</label>
+                    <input type="text" id="analiz-egitmen-destegi-title">
+                    <label for="analiz-egitmen-destegi-text" class="mt-2">Metin</label>
+                    <textarea id="analiz-egitmen-destegi-text" rows="5"></textarea>
+                </div>
+
+                <div>
+                    <label for="analiz-bilissel-yuk-title" class="font-semibold">Bilişsel Yük Başlık</label>
+                    <input type="text" id="analiz-bilissel-yuk-title">
+                    <label for="analiz-bilissel-yuk-text" class="mt-2">Metin</label>
+                    <textarea id="analiz-bilissel-yuk-text" rows="5"></textarea>
+                </div>
+
+                <div>
+                    <label for="analiz-erisilebilirlik-ve-esneklik-title" class="font-semibold">Erişilebilirlik ve Esneklik Başlık</label>
+                    <input type="text" id="analiz-erisilebilirlik-ve-esneklik-title">
+                    <label for="analiz-erisilebilirlik-ve-esneklik-text" class="mt-2">Metin</label>
+                    <textarea id="analiz-erisilebilirlik-ve-esneklik-text" rows="5"></textarea>
+                </div>
+
+                <div>
+                    <label for="analiz-motivasyon-ve-katilim-title" class="font-semibold">Motivasyon ve Katılım Başlık</label>
+                    <input type="text" id="analiz-motivasyon-ve-katilim-title">
+                    <label for="analiz-motivasyon-ve-katilim-text" class="mt-2">Metin</label>
+                    <textarea id="analiz-motivasyon-ve-katilim-text" rows="5"></textarea>
+                </div>
+
+                <div>
+                    <label for="analiz-oz-yeterlik-title" class="font-semibold">Öz-Yeterlik Başlık</label>
+                    <input type="text" id="analiz-oz-yeterlik-title">
+                    <label for="analiz-oz-yeterlik-text" class="mt-2">Metin</label>
+                    <textarea id="analiz-oz-yeterlik-text" rows="5"></textarea>
+                </div>
+
+                <div>
+                    <label for="analiz-is-yeri-uygunlugu-title" class="font-semibold">İş Yeri Uygunluğu Başlık</label>
+                    <input type="text" id="analiz-is-yeri-uygunlugu-title">
+                    <label for="analiz-is-yeri-uygunlugu-text" class="mt-2">Metin</label>
+                    <textarea id="analiz-is-yeri-uygunlugu-text" rows="5"></textarea>
+                </div>
+
+                <div>
+                    <label for="analiz-ogrenme-transferi-title" class="font-semibold">Öğrenme Transferi Başlık</label>
+                    <input type="text" id="analiz-ogrenme-transferi-title">
+                    <label for="analiz-ogrenme-transferi-text" class="mt-2">Metin</label>
+                    <textarea id="analiz-ogrenme-transferi-text" rows="5"></textarea>
+                </div>
+            </div>
+        </section>
     </main>
 
 
