@@ -36,7 +36,8 @@ function buildDataObject() {
         exam: {},
         schedule: { pazartesi: {}, sali: {}, carsamba: {}, persembe: {}, cuma: {} },
         media: {},
-        commonExam: {}
+        commonExam: {},
+        analysis: {}
     };
 
     // Genel Ayarlar
@@ -78,6 +79,20 @@ function buildDataObject() {
     data.commonExam.show = document.getElementById('showCommonExams')?.checked;
     data.commonExam.title = document.getElementById('commonExamTitle')?.value;
     data.commonExam.dates = document.getElementById('commonExamDates')?.value;
+
+    // Analiz
+    const analysisSections = [
+        'ogrenme-etkililigi', 'kullanici-memnuniyeti', 'zaman-ve-sure-yonetimi',
+        'teknoloji-kullanilabilirligi', 'icerik-kalitesi', 'egitmen-destegi',
+        'bilissel-yuk', 'erisilebilirlik-ve-esneklik', 'motivasyon-ve-katilim',
+        'oz-yeterlik', 'is-yeri-uygunlugu', 'ogrenme-transferi'
+    ];
+    analysisSections.forEach(id => {
+        data.analysis[id] = {
+            title: document.getElementById(`analiz-${id}-title`)?.value,
+            text: document.getElementById(`analiz-${id}-text`)?.value
+        };
+    });
 
     return data;
 }
@@ -134,6 +149,21 @@ function populateForm(data) {
         document.getElementById('showCommonExams').checked = data.commonExam.show || false;
         document.getElementById('commonExamTitle').value = data.commonExam.title || '';
         document.getElementById('commonExamDates').value = data.commonExam.dates || '';
+    }
+    // Analiz
+    if (data.analysis) {
+        const analysisSections = [
+            'ogrenme-etkililigi', 'kullanici-memnuniyeti', 'zaman-ve-sure-yonetimi',
+            'teknoloji-kullanilabilirligi', 'icerik-kalitesi', 'egitmen-destegi',
+            'bilissel-yuk', 'erisilebilirlik-ve-esneklik', 'motivasyon-ve-katilim',
+            'oz-yeterlik', 'is-yeri-uygunlugu', 'ogrenme-transferi'
+        ];
+        analysisSections.forEach(id => {
+            if (data.analysis[id]) {
+                document.getElementById(`analiz-${id}-title`).value = data.analysis[id].title || '';
+                document.getElementById(`analiz-${id}-text`).value = data.analysis[id].text || '';
+            }
+        });
     }
 }
 
